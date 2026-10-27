@@ -1,0 +1,44 @@
+.investment-assistant,.investment-assistant *{box-sizing:border-box}
+.investment-assistant{position:fixed;z-index:40;right:24px;bottom:22px;font-family:'DM Sans',Arial,sans-serif}
+.investment-assistant-toggle{display:flex;align-items:center;justify-content:center;gap:10px;min-height:51px;padding:0 18px;border:1px solid rgba(255,255,255,.13);background:#172a27;color:#fff;box-shadow:0 7px 26px rgba(13,30,26,.22);cursor:pointer;font:600 11px 'DM Sans',sans-serif;transition:background .18s ease,transform .18s ease}
+.investment-assistant-toggle:hover{transform:translateY(-2px);background:#2c423c}
+.investment-assistant-toggle:focus-visible,.investment-assistant-close:focus-visible,.investment-assistant-suggestions button:focus-visible,.investment-assistant-form button:focus-visible,.investment-assistant-panel a:focus-visible{outline:2px solid #c6a975;outline-offset:3px}
+.investment-assistant-toggle-icon,.investment-assistant-mark{display:grid;place-items:center;width:25px;height:25px;border:1px solid #c7b38e;color:#dccba8;font:500 17px Georgia,serif}
+.investment-assistant-panel{position:absolute;right:0;bottom:64px;display:grid;grid-template-rows:auto minmax(0,1fr) auto auto;width:min(380px,calc(100vw - 32px));height:min(560px,calc(100dvh - 110px));overflow:hidden;border:1px solid rgba(23,42,39,.2);background:#f3f1e9;color:#172a27;box-shadow:0 15px 55px rgba(13,30,26,.22)}
+.investment-assistant-header{display:flex;align-items:center;justify-content:space-between;min-height:71px;padding:0 18px;border-bottom:1px solid rgba(23,42,39,.12);background:#172a27;color:#fff}
+.investment-assistant-identity{display:flex;align-items:center;gap:11px}
+.investment-assistant-header h2{margin:0;font:400 18px Georgia,serif}
+.investment-assistant-header p{display:flex;align-items:center;gap:6px;margin:5px 0 0;color:#c5cec4;font-size:9px}
+.investment-assistant-header p span{width:6px;height:6px;border-radius:50%;background:#c9b284}
+.investment-assistant-close{width:33px;height:33px;border:0;background:transparent;color:#e5e3d8;cursor:pointer;font-size:23px}
+.investment-assistant-messages{display:flex;flex-direction:column;gap:13px;overflow-y:auto;padding:17px}
+.investment-assistant-message{max-width:92%;padding:12px;background:#fffefa;border:1px solid rgba(23,42,39,.09)}
+.investment-assistant-message p{margin:0;white-space:pre-line;color:#354b41;font-size:12px;line-height:1.8}
+.investment-assistant-message-visitor{align-self:flex-end;background:#e6e5db;border-color:transparent}
+.investment-assistant-message-visitor p{color:#263a32}
+.investment-assistant-message-guides{max-width:100%;padding:0;border:0;background:transparent}
+.investment-assistant-message-guides>p{padding:10px 12px;border:1px solid rgba(23,42,39,.09);background:#fffefa}
+.investment-assistant-links{display:flex;flex-direction:column;align-items:stretch;gap:9px;margin-top:10px}
+.investment-assistant-link{align-self:flex-start;color:#59472e;font-size:11px;line-height:1.6;text-decoration:underline;text-underline-offset:3px}
+.investment-assistant-guide-card{padding:11px 12px;border:1px solid rgba(23,42,39,.2);background:#fffefa}
+.investment-assistant-guide-category{color:#786240;font:9px 'DM Mono',monospace;letter-spacing:.07em}
+.investment-assistant-guide-card h3{margin:5px 0 3px;color:#172a27;font:400 18px/1.2 Georgia,'Times New Roman',serif}
+.investment-assistant-guide-card>p{color:#485b51;font-size:11px;line-height:1.55}
+.investment-assistant-guide-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.investment-assistant-guide-actions a{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:32px;padding:0 10px;font-size:10px;font-weight:600;text-decoration:none}
+.investment-assistant-guide-read{background:#172a27;color:#fff}
+.investment-assistant-guide-download{border:1px solid rgba(23,42,39,.26);background:#f3f1e9;color:#34483e}
+.investment-assistant-guide-actions a:focus-visible{outline:2px solid #a78c5c;outline-offset:3px}
+.investment-assistant-guide-actions a span{font-size:13px}
+.investment-assistant-suggestions{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+.investment-assistant-suggestions button{padding:8px 10px;border:1px solid rgba(23,42,39,.2);border-radius:1px;background:transparent;color:#41534a;text-align:left;cursor:pointer;font:10px/1.5 'DM Sans',sans-serif}
+.investment-assistant-suggestions button:hover{border-color:#9c906f;background:#e8e6dc}
+.investment-assistant-form{display:flex;gap:8px;padding:11px 13px;border-top:1px solid rgba(23,42,39,.12);background:#fffefa}
+.investment-assistant-form input{min-width:0;flex:1;padding:11px 10px;border:1px solid rgba(23,42,39,.16);border-radius:0;background:transparent;color:#172a27;font:11px 'DM Sans',sans-serif;outline-color:#a78c5c}
+.investment-assistant-form input::placeholder{color:#7a877e}
+.investment-assistant-form button{width:42px;border:0;background:#172a27;color:#fff;cursor:pointer;font-size:20px}
+.investment-assistant-form button:disabled{background:#d9dbd2;color:#899189;cursor:not-allowed}
+.investment-assistant-privacy{margin:0;padding:0 14px 11px;background:#fffefa;color:#5e6f64;font-size:10px;line-height:1.6}
+.investment-assistant-visually-hidden{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;clip-path:inset(50%);border:0}
+@media(max-width:480px){.investment-assistant{right:13px;bottom:13px}.investment-assistant-panel{right:-2px;bottom:61px;width:calc(100vw - 26px);height:min(600px,calc(100dvh - 92px))}.investment-assistant-toggle{min-height:47px;padding:0 14px}}
+@media(prefers-reduced-motion:reduce){.investment-assistant-toggle{transition:none}}
