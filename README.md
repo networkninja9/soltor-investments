@@ -113,3 +113,5 @@ SQLite is used only to simplify local development. For production, use a managed
 ## Suggested deployment architecture
 
 Browser → CDN/WAF → Next.js app (private server runtime) → managed PostgreSQL; secrets in a vault; identity provider with MFA; KYC vendor and payment provider via signed webhook endpoints; centralized audit logging/SIEM; encrypted backups; monitoring and incident alerting. Keep payment/KYC credentials server-side and separate staging from production.
+
+For a marketing-only deployment, set `MARKETING_ONLY=true` in the hosting provider's production environment. This returns 404 for investor/admin portal routes while leaving the public website and investment guides available. Do not enable investor accounts or process investor data until the production-hardening checklist above is complete.
