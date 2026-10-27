@@ -1,0 +1,13 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getSession } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { transactionAction } from "./actions";
+import { Footer } from "@/app/page";
+
+export default async function TransactionsPage({searchParams}:{searchParams:{submitted?:string;error?:string}}) {
+  const user = await getSession();
+  if (!user) redirect("/login");
+  const transactions = await prisma.transaction.findMany({where:{investorId:user.id},orderBy:{createdAt:"desc"},take:50});
+  return <><header className="header"><Link className="brand" href="/"><span className="mark">S</span><span>SOLTOR <b>CAPITAL</b></span></Link><Link className="link" href="/dashboard">← Dashboard</Link></header><main className="container"><div className="kicker">PAYMENT REQUESTS</div><h1 className="h2">Deposits & withdrawals</h1><p className="muted">Requests are logged for authorized back-office review. No money is moved by this prototype.</p>{searchParams.submitted&&<p className="success">Request submitted for review.</p>}{searchParams.error&&<p className="error">Please check the request details and try again.</p>}<div className="split"><section className="panel"><h2 style={{font:"600 20px Manrope"}}>New request</h2><form action={transactionAction} className="form"><label className="field">Request type<select name="type" required><option value="DEPOSIT">Deposit enquiry</option><option value="WITHDRAWAL">Withdrawal enquiry</option></select></label><label className="field">Amount<input name="amount" inputMode="decimal" placeholder="e.g. 2500.00" required/></label><label className="field">Currency<select name="currency"><option>USD</option><option>NGN</option><option>GBP</option><option>EUR</option></select></label><label className="field">Note (optional)<textarea name="description" maxLength={300} placeholder="Do not include bank account details."/></label><p className="notice">This is a request only. Do not send funds based on this page. Payment rails, compliance checks, and settlement reconciliation must be integrated and tested separately.</p><button className="btn btn-dark" type="submit">Submit request ↗</button></form></section><section className="panel"><h2 style={{font:"600 20px Manrope"}}>Request history</h2>{!transactions.length?<p className="muted">No requests yet.</p>:<div className="table-wrap"><table className="table"><thead><tr><th>Type</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody>{transactions.map(t=><tr key={t.id}><td>{t.type}</td><td>{t.currency} {(t.amountMinor/100).toFixed(2)}</td><td><span className="pill pending">{t.status}</span></td><td>{t.createdAt.toLocaleDateString()}</td></tr>)}</tbody></table></div>}</section></div></main><Footer/></>;
+}
