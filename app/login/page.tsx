@@ -1,0 +1,6 @@
+import { loginAction } from "./actions";
+import Link from "next/link";
+
+export default function LoginPage({ searchParams }: { searchParams: { error?: string } }) {
+  return <><header className="header"><Link className="brand" href="/"><span className="mark">S</span><span>SOLTOR <b>CAPITAL</b></span></Link><Link className="link" href="/">← Return to website</Link></header><main className="auth-shell"><section className="auth-box"><div className="kicker">SECURE INVESTOR ACCESS</div><h1>Welcome back.</h1><p className="muted">Sign in to access your account. Access is available only to provisioned users.</p>{searchParams.error && <p className="error">Sign-in failed. Check your credentials or contact the administrator.</p>}<form action={loginAction} className="form"><label className="field">Email address<input type="email" name="email" required autoComplete="username"/></label><label className="field">Password<input type="password" name="password" required autoComplete="current-password"/></label><button className="btn btn-dark" type="submit">Sign in ↗</button></form><p className="notice" style={{marginTop:20}}>MFA, account recovery, rate limiting, and production identity verification must be configured before real investor use.</p></section></main></>;
+}
